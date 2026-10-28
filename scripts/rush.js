@@ -1,10 +1,11 @@
-import { todayKey } from './date.js';
+import { initResults } from './results.js';
+import { dailyStorageKey, purgePreviousDays } from './storage.js';
 
 const STORAGE_PREFIX = 'dailyrush:';
 
 // ── Ticks persistence (one localStorage key per day) ────
 function storageKey() {
-    return STORAGE_PREFIX + todayKey();
+    return dailyStorageKey(STORAGE_PREFIX);
 }
 
 function loadDone() {
@@ -20,18 +21,6 @@ function saveDone(done) {
         localStorage.setItem(storageKey(), JSON.stringify([...done]));
     } catch {
         // Storage unavailable (private mode, quota): ticks only live in the DOM
-    }
-}
-
-function purgePreviousDays() {
-    try {
-        const current = storageKey();
-        for (let i = localStorage.length - 1; i >= 0; i--) {
-            const key = localStorage.key(i);
-            if (key.startsWith(STORAGE_PREFIX) && key !== current) localStorage.removeItem(key);
-        }
-    } catch {
-        // Storage unavailable: nothing to purge
     }
 }
 
@@ -93,7 +82,7 @@ function applyState() {
 }
 
 export async function initRush() {
-    purgePreviousDays();
+    purgePreviousDays(STORAGE_PREFIX);
 
     let games;
     try {
@@ -106,4 +95,5 @@ export async function initRush() {
 
     document.getElementById('rush-list').replaceChildren(...games.map(renderItem));
     applyState();
+    initResults(games);
 }

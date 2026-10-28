@@ -350,6 +350,35 @@ footer {
     background-color: transparent;
 }
 
+/* ── Dailyrush results ──────────────────────────────── */
+.rush-results {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.rush-results .kicker {
+    margin-bottom: 0;
+}
+
+.rush-results-input {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--primary-color);
+    font: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+}
+
+.rush-results-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
 
 @media (max-width: 800px) {
     body {
