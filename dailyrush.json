@@ -1,18 +1,18 @@
 [
     {
-        "name": "Wordle",
-        "url": "https://www.nytimes.com/games/wordle/index.html"
+        "name": "La Table des Savoirs",
+        "url": "https://latabledessavoirs.fr/"
     },
     {
-        "name": "Worldle",
-        "url": "https://worldle.teuteuf.fr"
+        "name": "Krillion",
+        "url": "https://krillion.io/"
     },
     {
-        "name": "Globle",
-        "url": "https://globle-game.com/game"
+        "name": "Chainle",
+        "url": "https://chainle.io/"
     },
     {
-        "name": "Framed",
-        "url": "https://framed.wtf"
+        "name": "More/Less",
+        "url": "https://lessgames.com/moreless"
     }
 ]
