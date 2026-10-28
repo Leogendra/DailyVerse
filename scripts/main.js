@@ -4,8 +4,8 @@ import { initRush } from './rush.js';
 
 // ── Boot ──────────────────────────────────────────────
 (async () => {
-    // Format date header
-    document.getElementById('hdr-date').textContent =
+    // Format date next to the daily kicker
+    document.getElementById('daily-date').textContent =
         new Date().toLocaleDateString('en-US', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });

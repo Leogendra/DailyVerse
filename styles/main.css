@@ -90,7 +90,9 @@ header {
 
 .date-label {
     color: var(--muted-color);
-    font-size: 0.85rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
 }
 
 /* ── Layout ─────────────────────────────────────────── */
