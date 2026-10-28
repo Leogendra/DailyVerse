@@ -1,4 +1,6 @@
 import { initDaily } from './daily.js';
+import { initRouter } from './router.js';
+import { initRush } from './rush.js';
 
 // ── Boot ──────────────────────────────────────────────
 (async () => {
@@ -7,6 +9,9 @@ import { initDaily } from './daily.js';
         new Date().toLocaleDateString('en-US', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
         });
+
+    initRouter();
+    initRush();
 
     let games;
     try {

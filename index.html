@@ -11,46 +11,57 @@
 <body>
     <header>
         <span class="logo">Daily Verse v0.1</span>
-        <span class="date-label" id="hdr-date"></span>
+        <div class="header-right">
+            <span class="date-label" id="hdr-date"></span>
+            <a class="btn btn-ghost" id="nav-toggle" href="#dailyrush">Dailyrush</a>
+        </div>
     </header>
 
     <main id="app" style="display:none">
-        <p class="kicker">Today's daily game</p>
+        <section class="view view-daily" id="view-daily">
+            <p class="kicker">Today's daily game</p>
 
-        <div class="card">
-            <div class="card-meta">
-                <span class="badge" id="g-cat"></span>
-                <span class="game-id" id="g-id"></span>
+            <div class="card">
+                <div class="card-meta">
+                    <span class="badge" id="g-cat"></span>
+                    <span class="game-id" id="g-id"></span>
+                </div>
+                <h1 class="game-name" id="g-name"></h1>
+                <p class="game-desc" id="g-desc"></p>
+                <div class="divider"></div>
+                <div class="actions">
+                    <button class="btn btn-primary" id="btn-play">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                        Play
+                    </button>
+                </div>
             </div>
-            <h1 class="game-name" id="g-name"></h1>
-            <p class="game-desc" id="g-desc"></p>
-            <div class="divider"></div>
-            <div class="actions">
-                <button class="btn btn-primary" id="btn-play">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z" />
+
+            <div class="or-row">
+                <hr><span>or</span>
+                <hr>
+            </div>
+
+            <div class="center-row">
+                <button class="btn btn-ghost" id="btn-random" style="font-size:0.78rem">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 3 21 3 21 8" />
+                        <line x1="4" y1="20" x2="21" y2="3" />
+                        <polyline points="21 16 21 21 16 21" />
+                        <line x1="4" y1="4" x2="9" y2="9" />
                     </svg>
-                    Play
+                    Surprise me
                 </button>
             </div>
-        </div>
+        </section>
 
-        <div class="or-row">
-            <hr><span>or</span>
-            <hr>
-        </div>
-
-        <div class="center-row">
-            <button class="btn btn-ghost" id="btn-random" style="font-size:0.78rem">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="16 3 21 3 21 8" />
-                    <line x1="4" y1="20" x2="21" y2="3" />
-                    <polyline points="21 16 21 21 16 21" />
-                    <line x1="4" y1="4" x2="9" y2="9" />
-                </svg>
-                Surprise me
-            </button>
-        </div>
+        <section class="view view-rush" id="view-rush" hidden>
+            <p class="kicker">Dailyrush</p>
+            <p class="rush-progress" id="rush-progress"></p>
+            <ol class="rush-list" id="rush-list"></ol>
+        </section>
     </main>
 
     <p id="loading">Loading…</p>
