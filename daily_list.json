@@ -3772,6 +3772,13 @@
         "id": 339
     },
     {
+        "name": "Evil Wordle",
+        "url": "https://swag.github.io/evil-wordle/",
+        "description": "There is no preset word. Each guess is answered with the pattern that leaves the most candidate words, maximizing the number of guesses needed.",
+        "category": "Words",
+        "id": 339
+    },
+    {
         "name": "Shikaku of the day",
         "url": "https://shikakuofthe.day",
         "description": "5 daily Shikaku puzzles where you partition a grid into rectangles whose areas match the number inside them.",
