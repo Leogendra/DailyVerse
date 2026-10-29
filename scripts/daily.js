@@ -9,6 +9,13 @@ function renderGame(g) {
     document.getElementById('btn-play').dataset.url = g.url;
 }
 
+function randomGameUrl(games, excludeIdx) {
+    let idx;
+    do { idx = Math.floor(Math.random() * games.length); }
+    while (idx === excludeIdx);
+    return games[idx].url;
+}
+
 export function initDaily(games) {
     const todayIdx = dailyIndex(games);
     renderGame(games[todayIdx]);
@@ -18,11 +25,10 @@ export function initDaily(games) {
         window.open(e.currentTarget.dataset.url, '_blank');
     });
 
-    // Surprise me → random game in a new tab (different from today's pick)
-    document.getElementById('btn-random').addEventListener('click', () => {
-        let idx;
-        do { idx = Math.floor(Math.random() * games.length); }
-        while (idx === todayIdx);
-        window.open(games[idx].url, '_blank');
+    // Surprise me → real link, so middle-click opens several in a row in new tabs.
+    // href is re-rolled on mousedown, before the browser reads it to open the tab.
+    const btnRandom = document.getElementById('btn-random');
+    btnRandom.addEventListener('mousedown', () => {
+        btnRandom.href = randomGameUrl(games, todayIdx);
     });
 }

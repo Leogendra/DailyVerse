@@ -36,8 +36,6 @@ export function initGamesList(games) {
     document.getElementById('all-game-label').textContent = `All games (${games.length})`;
     document.getElementById('games-count').textContent = games.length;
 
-    console.log('games', games);
-
     const sorted = [...games].sort((a, b) => a.name.localeCompare(b.name));
     document.getElementById('games-list').replaceChildren(...sorted.map(renderGameLink));
 
