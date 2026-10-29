@@ -1,4 +1,5 @@
 import { initDaily } from './daily.js';
+import { initGamesList } from './games.js';
 import { initRouter } from './router.js';
 import { initRush } from './rush.js';
 
@@ -23,6 +24,7 @@ import { initRush } from './rush.js';
     }
 
     initDaily(games);
+    initGamesList(games);
 
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'flex';
