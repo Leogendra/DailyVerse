@@ -353,6 +353,23 @@ footer {
 }
 
 /* ── Games list ─────────────────────────────────────── */
+.games-search {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 10px 16px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--primary-color);
+    font: inherit;
+    font-size: 0.9rem;
+}
+
+.games-search:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
 .games-list {
     list-style: none;
     display: flex;
