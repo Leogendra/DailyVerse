@@ -4,6 +4,7 @@ function normalize(str) {
 }
 
 function renderGameLink(game) {
+
     const li = document.createElement('li');
     li.dataset.normalized = normalize(game.name);
 
@@ -24,10 +25,18 @@ function filterGames(query) {
     for (const li of document.querySelectorAll('#games-list li')) {
         li.hidden = !li.dataset.normalized.includes(needle);
     }
+
+    // update the count of visible games
+    const visibleCount = document.querySelectorAll('#games-list li:not([hidden])').length;
+    document.getElementById('all-game-label').textContent = `All games (${visibleCount})`;
 }
 
 export function initGamesList(games) {
+    // set the number of games
+    document.getElementById('all-game-label').textContent = `All games (${games.length})`;
     document.getElementById('games-count').textContent = games.length;
+
+    console.log('games', games);
 
     const sorted = [...games].sort((a, b) => a.name.localeCompare(b.name));
     document.getElementById('games-list').replaceChildren(...sorted.map(renderGameLink));
