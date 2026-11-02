@@ -1,18 +1,42 @@
 [
     {
         "name": "La Table des Savoirs",
-        "url": "https://latabledessavoirs.fr/"
+        "url": "https://latabledessavoirs.fr/",
+        "score": {
+            "pattern": "\\((\\d+)/10\\)",
+            "typical": 5,
+            "max": 10,
+            "weight": 1
+        }
     },
     {
         "name": "Krillion",
-        "url": "https://krillion.io/"
+        "url": "https://krillion.io/",
+        "score": {
+            "pattern": "^(\\d+)$",
+            "typical": 297,
+            "max": 595,
+            "weight": 1
+        }
     },
     {
         "name": "Chainle",
-        "url": "https://chainle.io/"
+        "url": "https://chainle.io/",
+        "score": {
+            "pattern": "·\\s*([\\d,]+)",
+            "typical": 2500,
+            "max": 5000,
+            "weight": 1
+        }
     },
     {
         "name": "More/Less",
-        "url": "https://lessgames.com/moreless"
+        "url": "https://lessgames.com/moreless",
+        "score": {
+            "pattern": "(\\d+)/25",
+            "typical": 20,
+            "max": 25,
+            "weight": 1
+        }
     }
 ]

@@ -1,31 +1,9 @@
-// ── Scorers (keyed by game url, as in dailyrush.json) ──
-// Each score is mapped to [0, 1] through two anchors: typical -> 0.5, max -> 1
-// TODO: calibrate the typical anchors
-const SCORERS = {
-    'https://latabledessavoirs.fr/': {
-        parse: text => matchNumber(text, /\((\d+)\/10\)/),
-        typical: 5,
-        max: 10,
-    },
-    'https://krillion.io/': {
-        parse: text => matchNumber(text, /^(\d+)$/m),
-        typical: 297,
-        max: 595,
-    },
-    'https://chainle.io/': {
-        parse: text => matchNumber(text, /·\s*([\d,]+)/),
-        typical: 2500,
-        max: 5000,
-    },
-    'https://lessgames.com/moreless': {
-        parse: text => matchNumber(text, /(\d+)\/25/),
-        typical: 20,
-        max: 25,
-    },
-};
+// ── Scoring (configured per game in dailyrush.json, under "score") ──
+// pattern: regex whose first group captures the game score (commas are stripped)
+// typical -> 0.5, max -> 1, weight: share of the game in the daily score
 
-function matchNumber(text, pattern) {
-    const match = text.match(pattern);
+function parseScore(text, pattern) {
+    const match = text.match(new RegExp(pattern, 'm'));
     return match ? Number(match[1].replace(/,/g, '')) : null;
 }
 
@@ -37,14 +15,17 @@ function normalize(score, { typical, max }) {
     return Math.min(1, Math.max(0, p));
 }
 
-// Returns the daily score out of 100, or null while a game result is missing or unreadable
-export function computeDailyScore(results) {
-    const entries = Object.entries(SCORERS);
+// Returns the daily score out of 100, or null while a scored game result is missing or unreadable
+export function computeDailyScore(games, results) {
+    const scored = games.filter(game => game.score);
+    const totalWeight = scored.reduce((sum, game) => sum + game.score.weight, 0);
+    if (!totalWeight) return null;
+
     let total = 0;
-    for (const [url, scorer] of entries) {
-        const score = results[url] ? scorer.parse(results[url]) : null;
+    for (const game of scored) {
+        const score = results[game.url] ? parseScore(results[game.url], game.score.pattern) : null;
         if (score === null) return null;
-        total += normalize(score, scorer) / entries.length;
+        total += normalize(score, game.score) * game.score.weight / totalWeight;
     }
     return Math.round(100 * total);
 }

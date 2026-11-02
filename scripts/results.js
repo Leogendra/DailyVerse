@@ -81,7 +81,7 @@ export function initResults(games, onPaste) {
     let feedbackTimer;
 
     function render() {
-        const score = computeDailyScore(results);
+        const score = computeDailyScore(games, results);
         const blocks = games.map(game => results[game.url]).filter(Boolean);
         if (score !== null) blocks.unshift(`DailyRush Score : ${score}/100`);
         output.value = blocks.join(`\n${SEPARATOR}\n`);
