@@ -1,3 +1,4 @@
+import { computeDailyScore } from './score.js';
 import { dailyStorageKey, purgePreviousDays } from './storage.js';
 
 const STORAGE_PREFIX = 'dailyrush-results:';
@@ -80,10 +81,10 @@ export function initResults(games, onPaste) {
     let feedbackTimer;
 
     function render() {
-        output.value = games
-            .map(game => results[game.url])
-            .filter(Boolean)
-            .join(`\n${SEPARATOR}\n`);
+        const score = computeDailyScore(results);
+        const blocks = games.map(game => results[game.url]).filter(Boolean);
+        if (score !== null) blocks.unshift(`DailyRush Score : ${score}/100`);
+        output.value = blocks.join(`\n${SEPARATOR}\n`);
         output.rows = Math.max(MIN_OUTPUT_ROWS, output.value.split('\n').length);
 
         for (const item of items) {
