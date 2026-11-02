@@ -1,12 +1,32 @@
-# Daily-verse
-This is a daily game that makes you play a random daily game each day.
+# Daily Verse
 
-You can open the daily game in a new tab, or get a random one with "Surprise me".
+One random daily game per day, picked from a list of 700+ daily web games.  
+Everyone gets the same game on the same calendar day. The pick changes at midnight, local time.
 
-The Dailyrush view (`#dailyrush`) lists your own daily games from `dailyrush.json` (`[{ "name", "url" }]`). Each game gets ticked once opened; ticks are stored locally and reset every day.
 
-The daily game should be seeded to be the the same for all users in a 24h period, but change the day after (another random pick).
+## Dailyrush
 
-## Thanks
+Dailyrush is a list of games you play every day, defined in `dailyrush.json`:
 
-The daily game list comes from https://dles.aukspot.com/
+```json
+[
+    {
+        "name": "Krillion",
+        "url": "https://krillion.io/",
+        "score": { 
+            "pattern": "^(\\d+)$",
+            "typical": 297,
+            "max": 595,
+            "weight": 1
+        }
+    }
+]
+```
+
+Play every game and paste all the results to get your daily score out of 100 (`DailyRush Score : 63/100`).  
+The list is fully customizable: add, remove or reorder the games in `dailyrush.json`.
+
+
+## Thanks
+
+The daily game list comes from [dles.aukspot.com](https://dles.aukspot.com/).
