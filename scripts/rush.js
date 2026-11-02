@@ -95,5 +95,5 @@ export async function initRush() {
 
     document.getElementById('rush-list').replaceChildren(...games.map(renderItem));
     applyState();
-    initResults(games);
+    initResults(games, url => setDone(url, true));
 }

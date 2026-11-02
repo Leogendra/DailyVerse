@@ -352,6 +352,91 @@ footer {
     background-color: transparent;
 }
 
+/* ── Dailyrush per-game paste ───────────────────────── */
+.rush-item {
+    flex-wrap: wrap;
+    row-gap: 8px;
+}
+
+.rush-result {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    align-self: stretch;
+}
+
+.rush-paste,
+.rush-clear {
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--secondary-color);
+    color: var(--muted-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.rush-paste {
+    width: 44px;
+    height: 100%;
+    min-height: 44px;
+}
+
+/* Space stays reserved so every link keeps the same width */
+.rush-clear {
+    visibility: hidden;
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+}
+
+.rush-paste:hover,
+.rush-clear:hover {
+    border-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.rush-paste .icon-pasted {
+    display: none;
+}
+
+.rush-item.has-result .rush-paste {
+    background-color: var(--accent-color-soft);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.rush-item.has-result .icon-paste {
+    display: none;
+}
+
+.rush-item.has-result .icon-pasted {
+    display: block;
+}
+
+.rush-item.has-result .rush-clear {
+    visibility: visible;
+}
+
+/* Full-width row under the game, aligned with the link */
+.rush-paste-fallback {
+    flex-basis: calc(100% - var(--tick-size) - 16px);
+    margin-left: calc(var(--tick-size) + 16px);
+    padding: 10px 16px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--accent-color);
+    border-radius: var(--radius);
+    color: var(--primary-color);
+    font: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+}
+
+.rush-paste-fallback:focus {
+    outline: none;
+}
+
 /* ── Games list ─────────────────────────────────────── */
 .games-search {
     width: 100%;
@@ -398,7 +483,8 @@ footer {
     color: var(--primary-color);
     font: inherit;
     font-size: 0.9rem;
-    resize: vertical;
+    resize: none;
+    cursor: default;
 }
 
 .rush-results-input:focus {
