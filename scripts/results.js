@@ -83,7 +83,7 @@ export function initResults(games, onPaste) {
     function render() {
         const score = computeDailyScore(games, results);
         const blocks = games.map(game => results[game.url]).filter(Boolean);
-        if (score !== null) blocks.unshift(`DailyRush Score : ${score}/100`);
+        if (score !== null) blocks.unshift(`DailyRush Score : ${score.total}/100 (${score.parts.join('-')})`);
         output.value = blocks.join(`\n${SEPARATOR}\n`);
         output.rows = Math.max(MIN_OUTPUT_ROWS, output.value.split('\n').length);
 

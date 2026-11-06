@@ -15,17 +15,19 @@ function normalize(score, { typical, max }) {
     return Math.min(1, Math.max(0, p));
 }
 
-// Returns the daily score out of 100, or null while a scored game result is missing or unreadable
+// Returns { total, parts }: each part is a game's rounded contribution to the score out of 100,
+// total is their sum. Returns null while a scored game result is missing or unreadable
 export function computeDailyScore(games, results) {
     const scored = games.filter(game => game.score);
     const totalWeight = scored.reduce((sum, game) => sum + game.score.weight, 0);
     if (!totalWeight) return null;
 
-    let total = 0;
+    const parts = [];
     for (const game of scored) {
         const score = results[game.url] ? parseScore(results[game.url], game.score.pattern) : null;
         if (score === null) return null;
-        total += normalize(score, game.score) * game.score.weight / totalWeight;
+        parts.push(Math.round(100 * normalize(score, game.score) * game.score.weight / totalWeight));
     }
-    return Math.round(100 * total);
+    const total = parts.reduce((sum, part) => sum + part, 0);
+    return { total, parts };
 }
