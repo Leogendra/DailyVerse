@@ -23,7 +23,7 @@ Dailyrush is a list of games you play every day, defined in `dailyrush.json`:
 ]
 ```
 
-Play every game and paste all the results to get your daily score out of 100 (`DailyRush Score : 63/100`).  
+Play every game and paste all the results to get your daily score out of 100 (`DailyRush Score : 63/100 (15-17-16-15)`), each number in parentheses being one game's contribution to the total.  
 The list is fully customizable: add, remove or reorder the games in `dailyrush.json`.
 
 
